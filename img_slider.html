@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slider</title>
+    <style>
+        .slider {
+            position: relative;
+            width: 100%;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        .slide {
+            width: 200px;
+            height: auto;
+        }
+
+        .slider img {
+            width: 100%;
+            display: none;
+        }
+
+        img.displaySlide {
+            display: block;
+            animation-name: fade;
+            animation-duration: 1.5s; /* Added 's' for seconds */
+        }
+
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2em;
+            background: rgba(255, 255, 255, 0.5);
+            border: none;
+            cursor: pointer;
+            font-size: 2rem;
+            background-color: hsla(0, 0%, 0%, 0.5);
+            color: white;
+        }
+
+        .prev {
+            left: 10px;
+        }
+
+        .next {
+            right: 10px;
+        }
+
+        @keyframes fade {
+            from {opacity: 0.5;}
+            to {opacity: 1;}
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slider">
+        <div class="slides">
+            <img src="images/audiR8-back.jpg" alt="img1" class="slide">
+            <img src="images/audiR8-back1.jpg" alt="img2" class="slide">
+            <img src="images/audiR8-backlight 2.jpg" alt="img3" class="slide">
+            <img src="images/audiR8gt-trim.jpg" alt="img4" class="slide">
+            <img src="images/audiR8-door.panel.jpg" alt="img5" class="slide">
+            <img src="images/audiR8-racetrack3.jpg" alt="img6" class="slide">
+        </div>
+        <button class="prev" onclick="prevSlide()">&#10094;</button>
+        <button class="next" onclick="nextSlide()">&#10095;</button>
+    </div>
+
+    <script>
+        const slides = document.querySelectorAll(".slides img");
+        let slideIndex = 0;
+        let intervalId = null;
+
+        document.addEventListener("DOMContentLoaded", initializeSlider);
+
+        function initializeSlider() {
+            if (slides.length > 0) {
+                slides[slideIndex].classList.add("displaySlide");
+            }
+        }
+
+        function showSlide(index) {
+            if (index >= slides.length) {
+                slideIndex = 0;
+            } else if (index < 0) {
+                slideIndex = slides.length - 1;
+            }
+
+            slides.forEach(slide => {
+                slide.classList.remove("displaySlide");
+            });
+
+            slides[slideIndex].classList.add("displaySlide");
+        }
+
+        function prevSlide() {
+            slideIndex--;
+            showSlide(slideIndex);
+        }
+
+        function nextSlide() {
+            slideIndex++;
+            showSlide(slideIndex);
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,58 @@
+/* Small Reset */
+*::before, *::after, * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: sans-serif;
+}
+
+h1 {
+    font-size: 32px;
+    color: orangered;
+}
+
+p {
+    font-size: 20px;
+}
+
+button {
+    border-radius: 0.5cap;
+    border: 4px solid rgb(123, 160, 230);
+    padding: 5px;
+    font-size: 20px;
+}
+
+button:hover {
+    background: rgb(106, 139, 199);
+    animation-delay: 4s;
+    transition: 1s;
+}
+
+#textBox {
+    border-radius: 0.5cap;
+    border: 4px solid rgb(123, 160, 230);
+    text-align: center;
+    padding: 5px;
+    font-size: 20px;
+}
+
+#toCelsius {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+
+
+form {
+    border: 4px solid rgb(123, 160, 230);
+    height: 600;
+    width: max-content;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
