@@ -26,10 +26,12 @@
         img.displaySlide {
             display: block;
             animation-name: fade;
-            animation-duration: 1.5s; /* Added 's' for seconds */
+            animation-duration: 0.5s;
+            /* Added 's' for seconds */
         }
 
-        .prev, .next {
+        .prev,
+        .next {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
@@ -51,8 +53,13 @@
         }
 
         @keyframes fade {
-            from {opacity: 0.5;}
-            to {opacity: 1;}
+            from {
+                opacity: 0.5;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
     </style>
 </head>
@@ -107,6 +114,51 @@
             slideIndex++;
             showSlide(slideIndex);
         }
+
+        document.addEventListener("DOMContentLoaded", initializeSlider);
+
+        function initializeSlider() {
+            if (slides.length > 0) {
+                slides[slideIndex].classList.add("displaySlide");
+                startAutoSlide();
+            }
+        }
+
+        function showSlide(index) {
+            if (index >= slides.length) {
+                slideIndex = 0;
+            } else if (index < 0) {
+                slideIndex = slides.length - 1;
+            }
+
+            slides.forEach(slide => {
+                slide.classList.remove("displaySlide");
+            });
+
+            slides[slideIndex].classList.add("displaySlide");
+        }
+
+        function prevSlide() {
+            slideIndex--;
+            showSlide(slideIndex);
+            resetAutoSlide();
+        }
+
+        function nextSlide() {
+            slideIndex++;
+            showSlide(slideIndex);
+            resetAutoSlide();
+        }
+
+        function startAutoSlide() {
+            intervalId = setInterval(nextSlide, 3000);
+        }
+
+        function resetAutoSlide() {
+            clearInterval(intervalId);
+            startAutoSlide();
+        }
+
     </script>
 </body>
 
